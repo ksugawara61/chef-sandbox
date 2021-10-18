@@ -10,7 +10,7 @@ node_vm_cpus = 2
 node_port_array = [80, 443, 3000, 3001, 3002, 3003, 9200]
 
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = 'ubuntu/bionic64'
 
   config.vm.hostname = node_hostname
   node_port_array.each do |port|
@@ -22,10 +22,10 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     vb.cpus = node_vm_cpus
   end
   config.vm.synced_folder(
-    './',
-    '/var/chef',
-    owner: 'root',
-    group: 'root'
+    './workspace',
+    '/home/vagrant/workspace',
+    owner: 'vagrant',
+    group: 'vagrant'
   )
 
   config.vm.provision 'shell', privileged: false, inline: <<-SHELL
@@ -34,5 +34,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     sudo dpkg -i chef-workstation_21.9.613-1_amd64.deb
     rm chef-workstation_21.9.613-1_amd64.deb
     chef -v
+    /opt/chef-workstation/embedded/bin/gem install knife-solo
+    /opt/chef-workstation/embedded/bin/gem install berkshelf
   SHELL
 end

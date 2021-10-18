@@ -1,2 +1,4 @@
 .vagrant
 *.log
+workspace/*
+!workspace/.gitkeep
