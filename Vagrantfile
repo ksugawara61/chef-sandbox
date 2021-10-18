@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
     sudo apt-get update
     wget https://packages.chef.io/files/stable/chef-workstation/21.9.613/ubuntu/20.04/chef-workstation_21.9.613-1_amd64.deb -q
     sudo dpkg -i chef-workstation_21.9.613-1_amd64.deb
-    rm chef-workstation_21.9.613-1_amd64.de
+    rm chef-workstation_21.9.613-1_amd64.deb
     chef -v
   SHELL
 end
